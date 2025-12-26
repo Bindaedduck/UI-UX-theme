@@ -1,0 +1,83 @@
+import { useState, type ReactNode } from 'react';
+import { 
+  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, 
+  Typography
+} from '@mui/material';
+import {  
+    Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, GridView
+} from '@mui/icons-material';
+import { theme } from '.././theme';
+import { Link } from 'react-router-dom';
+
+export const sidebarWidth = 240;
+
+interface menuItem {
+    text: string;
+    icon: ReactNode;
+}
+
+export default function Sidebar() {
+
+    const [selectedItem, setSelectedItem] = useState(''); //선택된 아이템 State
+
+    const menuItems: menuItem[] = [
+        { text: '대시보드', icon: <DashboardIcon /> },
+        { text: '프로젝트', icon: <Folder /> },
+        { text: '작업', icon: <Assignment /> },
+        { text: '팀', icon: <Group /> },
+        { text: '보고서', icon: <BarChart /> }
+    ]
+
+    const handleListItemClick = (item: menuItem) => {
+        setSelectedItem(item.text);
+    }
+
+    return(
+        <>
+            <Drawer
+                variant="permanent" //Sidebar를 항상 보여줌
+                sx={{
+                    width: sidebarWidth,
+                    flexShrink: 0, //Sidebar 크기가 줄어들지 않게 고정
+                    '& .MuiDrawer-paper': {
+                        width: sidebarWidth,
+                        borderRight: `1px solid ${theme.palette.grey[200]}`,
+                    },
+                }}
+            >
+            <Box component={Link} to='/' //로고 클릭하면 메인페이지로 이동
+                sx={{ 
+                    p: 3, 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: 1, 
+                    borderBottom: `1px solid ${theme.palette.grey[200]}`,
+                    color: 'inherit',
+                    textDecoration: 'none',
+                    '&:visited': {
+                        color: 'inherit'
+                    },
+                    '&:hover': {
+                        color: '#0F4E83'  // 원하는 색상
+                    }
+                }}
+            >
+                <GridView color="primary" />
+                <Typography variant="h6" fontWeight={700}>IDP Portal</Typography>
+            </Box>
+            <List sx={{ px: 2 }}>
+                {menuItems.map((item) => (
+                <ListItem key={item.text} disablePadding sx={{ mb: 2}}>
+                    <ListItemButton onClick={() => handleListItemClick(item)} 
+                    selected={selectedItem === item.text} sx={{ borderRadius: 1 }}>
+                        {/* 아이템이 선택되면 라운딩 처리 */}
+                    <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                    </ListItemButton>
+                </ListItem> 
+                ))}
+            </List>
+            </Drawer>
+        </>
+    )
+}

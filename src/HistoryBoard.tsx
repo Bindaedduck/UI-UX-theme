@@ -11,6 +11,7 @@ import {
   Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, Settings, Add, Search, FilterList, Sort, GridView, ChevronLeft, ChevronRight, MoreVert, NotificationsNoneOutlined, HelpOutlineOutlined
 } from '@mui/icons-material';
 import { theme } from './theme';
+import Sidebar from './components/sidebar';
 
 const sidebarWidth = 240;
 
@@ -22,58 +23,31 @@ const projects = [
 export default function ProjectDashboard() {
   return (
     <ThemeProvider theme={theme}>
+      {/* CSS 정규화 */}
       <CssBaseline />
 
       <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
         {/* Sidebar */}
-        <Drawer
-          variant="permanent"
-          sx={{
-            width: sidebarWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: sidebarWidth,
-              borderRight: `1px solid ${theme.palette.grey[200]}`,
-            },
-          }}
-        >
-          <Box sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
-            <GridView color="primary" />
-            <Typography variant="h6" fontWeight={700}>ProjectMgt</Typography>
-          </Box>
-          <List sx={{ px: 2 }}>
-            {[
-              { text: '대시보드', icon: <DashboardIcon /> },
-              { text: '프로젝트', icon: <Folder />, active: true },
-              { text: '작업', icon: <Assignment /> },
-              { text: '팀', icon: <Group /> },
-              { text: '보고서', icon: <BarChart /> }
-            ].map((item) => (
-              <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
-                <ListItemButton selected={item.active} sx={{ borderRadius: 1 }}>
-                  <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
+        <Sidebar/>
 
 <AppBar
   position="fixed"
   elevation={0}
   sx={{
+    p: 1,
     bgcolor: '#fff',
     borderBottom: '1px solid #eaeef3',
     color: 'text.primary',
     zIndex: (theme) => theme.zIndex.drawer + 1,
     left: `${sidebarWidth}px`,
     width: `calc(100% - ${sidebarWidth}px)`,
+    
   }}
 >
+  
   <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
     {/* Breadcrumb */}
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="h6" color="text.secondary">
       Dashboard&nbsp; / &nbsp;<b>Projects</b>
     </Typography>
 
@@ -103,7 +77,7 @@ export default function ProjectDashboard() {
             py: 4,
             width: `calc(100vw - ${sidebarWidth}px)`,
             overflowX: 'auto',
-            pt: '90px'
+            pt: '110px'
           }}
         >
           <Box
