@@ -33,8 +33,9 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-    h4: { fontSize: '2rem', fontWeight: 700, lineHeight: 1.2 }, // "모든 프로젝트" 제목
-    h5: { fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.3 }, // "ProjectMgt" 제목
+    h4: { fontSize: '2rem', fontWeight: 700, lineHeight: 1.2 }, 
+    h5: { fontSize: '1.5rem', fontWeight: 700, lineHeight: 1.3 }, 
+    h6: { fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.3 }, 
     subtitle1: { fontSize: '1rem', fontWeight: 600 },
     subtitle2: { fontSize: '0.875rem', fontWeight: 600 },
     body1: { fontSize: '1rem', lineHeight: 1.5 },
@@ -79,10 +80,9 @@ export const theme = createTheme({
         }
       },
     },
-    MuiPaper: {
+    MuiPaper: { //Used in sidebar, topbar
       styleOverrides: {
         root: {
-          borderRadius: 8,
           boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.05)', // 이미지와 유사한 그림자
         },
       },
@@ -169,7 +169,7 @@ export const theme = createTheme({
         },
       },
     },
-    MuiListItemButton: {
+    MuiListItemButton: { //Used in sidebar
       styleOverrides: {
         root: {
           borderRadius: 8,
@@ -189,7 +189,7 @@ export const theme = createTheme({
         },
       },
     },
-    MuiListItemIcon: {
+    MuiListItemIcon: { //Used in sidebar
       styleOverrides: {
         root: {
           minWidth: 40,

@@ -1,72 +1,31 @@
 import React from 'react';
 import { 
-  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, 
-  Typography, Avatar, Chip, Table, TableBody, TableCell, TableContainer, 
+  Box, 
+  Typography,  Chip, Table, TableBody, TableCell, TableContainer, 
   TableHead, TableRow, Paper, LinearProgress, Button, TextField, InputAdornment,
-  CssBaseline, ThemeProvider, IconButton,  AppBar,
-  Toolbar,
-  Badge,
+  CssBaseline, ThemeProvider, IconButton,  
 } from '@mui/material';
 import { 
-  Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, Settings, Add, Search, FilterList, Sort, GridView, ChevronLeft, ChevronRight, MoreVert, NotificationsNoneOutlined, HelpOutlineOutlined
+   Add, Search, FilterList, Sort, ChevronLeft, ChevronRight, MoreVert
 } from '@mui/icons-material';
 import { theme } from './theme';
-import Sidebar from './components/sidebar';
-
-const sidebarWidth = 240;
+import Sidebar, { sidebarWidth } from './components/sidebar';
+import Topbar from './components/Topbar';
 
 const projects = [
   { id: 1, name: '3분기 웹사이트 개편', dept: '마케팅 부서', status: '정상 진행', date: '2023. 10. 24', team: ['/avatar1.jpg'], progress: 65, statusKey: 'info' },
   { id: 2, name: '모바일 앱 출시', dept: '제품 엔지니어링', status: '위험', date: '2023. 11. 01', team: ['/avatar2.jpg'], progress: 40, statusKey: 'error' },
 ];
 
-export default function ProjectDashboard() {
+export default function HistoryBoard() {
   return (
-    <ThemeProvider theme={theme}>
-      {/* CSS 정규화 */}
-      <CssBaseline />
+    <ThemeProvider theme={theme}>  {/* 테마 적용 */}
+       
+      <CssBaseline /> {/* CSS 정규화 */}
 
       <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
-        {/* Sidebar */}
         <Sidebar/>
-
-<AppBar
-  position="fixed"
-  elevation={0}
-  sx={{
-    p: 1,
-    bgcolor: '#fff',
-    borderBottom: '1px solid #eaeef3',
-    color: 'text.primary',
-    zIndex: (theme) => theme.zIndex.drawer + 1,
-    left: `${sidebarWidth}px`,
-    width: `calc(100% - ${sidebarWidth}px)`,
-    
-  }}
->
-  
-  <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
-    {/* Breadcrumb */}
-    <Typography variant="h6" color="text.secondary">
-      Dashboard&nbsp; / &nbsp;<b>Projects</b>
-    </Typography>
-
-      {/* Right Actions */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <IconButton>
-          <Badge variant="dot" color="error">
-            <NotificationsNoneOutlined />
-          </Badge>
-        </IconButton>
-
-        <IconButton>
-          <HelpOutlineOutlined />
-        </IconButton>
-
-      <Avatar sx={{ width: 32, height: 32 }} />
-    </Box>
-  </Toolbar>
-</AppBar>
+        <Topbar sidebarWidth={sidebarWidth} mainMenu='프로젝트' subMenu='프로젝트1'/>
 
         {/* Main */}
         <Box
@@ -86,9 +45,9 @@ export default function ProjectDashboard() {
   }}
 >
           {/* Header */}
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 5, px: 1 }}>
             <Box>
-              <Typography variant="h4">모든 프로젝트</Typography>
+              <Typography variant="h4">프로젝트</Typography>
               <Typography variant="body2" color="text.secondary">진행 중인 프로젝트를 관리하세요</Typography>
             </Box>
             <Button variant="contained" startIcon={<Add />}>새 프로젝트</Button>

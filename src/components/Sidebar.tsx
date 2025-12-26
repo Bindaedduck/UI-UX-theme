@@ -1,7 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { 
-  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, 
-  Typography
+  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography
 } from '@mui/material';
 import {  
     Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, GridView
@@ -11,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 export const sidebarWidth = 240;
 
-interface menuItem {
+interface MenuItem {
     text: string;
     icon: ReactNode;
 }
@@ -20,7 +19,7 @@ export default function Sidebar() {
 
     const [selectedItem, setSelectedItem] = useState(''); //선택된 아이템 State
 
-    const menuItems: menuItem[] = [
+    const menuItems: MenuItem[] = [
         { text: '대시보드', icon: <DashboardIcon /> },
         { text: '프로젝트', icon: <Folder /> },
         { text: '작업', icon: <Assignment /> },
@@ -28,7 +27,7 @@ export default function Sidebar() {
         { text: '보고서', icon: <BarChart /> }
     ]
 
-    const handleListItemClick = (item: menuItem) => {
+    const handleListItemClick = (item: MenuItem) => {
         setSelectedItem(item.text);
     }
 
@@ -45,38 +44,39 @@ export default function Sidebar() {
                     },
                 }}
             >
-            <Box component={Link} to='/' //로고 클릭하면 메인페이지로 이동
-                sx={{ 
-                    p: 3, 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: 1, 
-                    borderBottom: `1px solid ${theme.palette.grey[200]}`,
-                    color: 'inherit',
-                    textDecoration: 'none',
-                    '&:visited': {
-                        color: 'inherit'
-                    },
-                    '&:hover': {
-                        color: '#0F4E83'  // 원하는 색상
-                    }
-                }}
-            >
-                <GridView color="primary" />
-                <Typography variant="h6" fontWeight={700}>IDP Portal</Typography>
-            </Box>
-            <List sx={{ px: 2 }}>
-                {menuItems.map((item) => (
-                <ListItem key={item.text} disablePadding sx={{ mb: 2}}>
-                    <ListItemButton onClick={() => handleListItemClick(item)} 
-                    selected={selectedItem === item.text} sx={{ borderRadius: 1 }}>
+                <Box component={Link} to='/' //로고 클릭하면 메인페이지로 이동
+                    sx={{ 
+                        p: 3, 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: 1, 
+                        //borderBottom: `1px solid ${theme.palette.grey[200]}`,
+                        color: 'inherit',
+                        textDecoration: 'none',
+                        '&:visited': {
+                            color: 'inherit'
+                        },
+                        '&:hover': {
+                            color: '#0F4E83'
+                        }
+                    }}
+                >
+                    <GridView color="primary" />
+                    <Typography variant="h5" fontWeight={700}>IDP Portal</Typography>
+                </Box>
+                
+                <List sx={{ px: 2, py: 2 }}>
+                    {menuItems.map((item) => (
+                    <ListItem key={item.text} disablePadding sx={{ mb: 2}}>
+                        <ListItemButton onClick={() => handleListItemClick(item)} 
+                        selected={selectedItem === item.text} sx={{ borderRadius: 1 }}>
                         {/* 아이템이 선택되면 라운딩 처리 */}
-                    <ListItemIcon sx={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.text} />
-                    </ListItemButton>
-                </ListItem> 
-                ))}
-            </List>
+                        <ListItemIcon>{item.icon}</ListItemIcon>
+                        <ListItemText primary={item.text} />
+                        </ListItemButton>
+                    </ListItem> 
+                    ))}
+                </List>
             </Drawer>
         </>
     )
