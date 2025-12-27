@@ -3,14 +3,14 @@ import {
   Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography
 } from '@mui/material';
 import {  
-    Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, GridView
+    Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, GridView, Settings
 } from '@mui/icons-material';
 import { theme } from '.././theme';
 import { Link } from 'react-router-dom';
 
 export const sidebarWidth = 240;
 
-interface MenuItem {
+interface Item {
     text: string;
     icon: ReactNode;
 }
@@ -19,7 +19,7 @@ export default function Sidebar() {
 
     const [selectedItem, setSelectedItem] = useState(''); //선택된 아이템 State
 
-    const menuItems: MenuItem[] = [
+    const mainMenuItems: Item[] = [
         { text: '대시보드', icon: <DashboardIcon /> },
         { text: '프로젝트', icon: <Folder /> },
         { text: '작업', icon: <Assignment /> },
@@ -27,7 +27,11 @@ export default function Sidebar() {
         { text: '보고서', icon: <BarChart /> }
     ]
 
-    const handleListItemClick = (item: MenuItem) => {
+    const systemMenuItems: Item[] = [
+        { text: '설정', icon: <Settings /> },
+    ]
+
+    const handleListItemClick = (item: Item) => {
         setSelectedItem(item.text);
     }
 
@@ -44,6 +48,7 @@ export default function Sidebar() {
                     },
                 }}
             >
+               
                 <Box component={Link} to='/' //로고 클릭하면 메인페이지로 이동
                     sx={{ 
                         p: 3, 
@@ -65,8 +70,14 @@ export default function Sidebar() {
                     <Typography variant="h5" fontWeight={700}>IDP Portal</Typography>
                 </Box>
                 
-                <List sx={{ px: 2, py: 2 }}>
-                    {menuItems.map((item) => (
+
+
+                {/* Main menu */}
+                <Typography variant="body2" color="text.disabled" sx={{px: 2, mt: 2, letterSpacing: '0.05em'}}>
+                    <b>MAIN MENU</b>
+                </Typography>
+                <List sx={{ px: 2}}>
+                    {mainMenuItems.map((item) => (
                     <ListItem key={item.text} disablePadding sx={{ mb: 2}}>
                         <ListItemButton onClick={() => handleListItemClick(item)} 
                         selected={selectedItem === item.text} sx={{ borderRadius: 1 }}>
@@ -77,6 +88,25 @@ export default function Sidebar() {
                     </ListItem> 
                     ))}
                 </List>
+                
+                {/* System menu */}
+                <Box sx={{borderTop: `1px solid ${theme.palette.grey[200]}`, mt: 'auto'}}>
+                    <Typography variant="body2" color="text.disabled" sx={{px: 2, mt: 2, letterSpacing: '0.05em'}}>
+                        <b>SYSTEM MENU</b>
+                    </Typography>
+                    <List sx={{ px: 2 }}>
+                        {systemMenuItems.map((item) => (
+                        <ListItem key={item.text} disablePadding sx={{ mb: 1}}>
+                            <ListItemButton onClick={() => handleListItemClick(item)} 
+                            selected={selectedItem === item.text} sx={{ borderRadius: 1 }}>
+                            {/* 아이템이 선택되면 라운딩 처리 */}
+                            <ListItemIcon>{item.icon}</ListItemIcon>
+                            <ListItemText primary={item.text} />
+                            </ListItemButton>
+                        </ListItem> 
+                        ))}
+                    </List>
+                </Box>
             </Drawer>
         </>
     )

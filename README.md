@@ -1,73 +1,22 @@
-# React + TypeScript + Vite
+# Material UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### CSS 약어
+| 약어 | CSS 속성 | 설명 |
+| :--- | :--- | :--- |
+| **m** | `margin` | 상하좌우 전체 바깥 여백 |
+| **mt** | `margin-top` | 위쪽 바깥 여백 |
+| **mb** | `margin-bottom` | 아래쪽 바깥 여백 |
+| **ml** | `margin-left` | 왼쪽 바깥 여백 |
+| **mr** | `margin-right` | 오른쪽 바깥 여백 |
+| **mx** | `margin-left`, `right` | 좌우(X축) 바깥 여백 |
+| **my** | `margin-top`, `bottom` | 상하(Y축) 바깥 여백 |
+| **p** | `padding` | 상하좌우 전체 안쪽 여백 |
+| **pt** | `padding-top` | 위쪽 안쪽 여백 |
+| **pb** | `padding-bottom` | 아래쪽 안쪽 여백 |
+| **pl** | `padding-left` | 왼쪽 안쪽 여백 |
+| **pr** | `padding-right` | 오른쪽 안쪽 여백 |
+| **px** | `padding-left`, `right` | 좌우(X축) 안쪽 여백 |
+| **py** | `padding-top`, `bottom` | 상하(Y축) 안쪽 여백 |
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Icon
+https://mui.com/material-ui/material-icons/?query=close

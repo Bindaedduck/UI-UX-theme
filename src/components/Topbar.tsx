@@ -1,6 +1,4 @@
-import { 
-  Box, Typography, Avatar, IconButton,  AppBar, Toolbar, 
-} from '@mui/material';
+import { Box, Typography, Avatar, IconButton,  AppBar, Toolbar } from '@mui/material';
 import { HelpOutlineOutlined, NotificationsNoneOutlined } from '@mui/icons-material';
 
 interface Option{
@@ -22,6 +20,7 @@ export default function Topbar(props: Option) {
                 zIndex: (theme) => theme.zIndex.drawer + 1,
                 left: `${props.sidebarWidth}px`,
                 width: `calc(100% - ${props.sidebarWidth}px)`,
+                minWidth: 800 //가로길이를 줄였을 때 components를 보여줄 최소 너비
             }}
         >
   
@@ -30,24 +29,24 @@ export default function Topbar(props: Option) {
 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <Typography variant="body1" color="text.secondary">
-                    {props.subMenu}&nbsp; / &nbsp;
+                        {props.subMenu}&nbsp; / &nbsp;
                     </Typography>
 
                     <Typography variant="body1" color="text.primary">
-                    <b>{props.mainMenu}</b>
+                        <b>{props.mainMenu}</b>
                     </Typography>
                 </Box>
                 
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                     <IconButton sx={{ '&:focus': { outline: 'none' }}}>
+                     <IconButton>
                         <NotificationsNoneOutlined />
                     </IconButton>
                     
-                    <IconButton sx={{ '&:focus': { outline: 'none' }}}>
+                    <IconButton>
                         <HelpOutlineOutlined />
                     </IconButton>
 
-                    <IconButton sx={{ '&:focus': { outline: 'none' }}}>
+                    <IconButton>
                         <Avatar sx={{ width: 32, height: 32 }} />
                     </IconButton>
                 </Box>

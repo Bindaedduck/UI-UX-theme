@@ -189,7 +189,7 @@ export const theme = createTheme({
         },
       },
     },
-    MuiListItemIcon: { //Used in sidebar
+    MuiListItemIcon: { // Used in sidebar
       styleOverrides: {
         root: {
           minWidth: 40,
@@ -197,33 +197,54 @@ export const theme = createTheme({
         },
       },
     },
-    MuiTextField: {
+    MuiTextField: { // Used in tableControls
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-root': {
-            borderRadius: 8, // 이미지와 유사한 라운드
-            backgroundColor: '#FFFFFF', // 텍스트필드 내부 배경은 흰색
+            borderRadius: 8, 
+            backgroundColor: '#FFFFFF', // 내부 배경
             '& fieldset': {
               borderColor: '#E2E8F0',
             },
             '&:hover fieldset': {
-              borderColor: '#9FC5E8', // 호버 시 연한 블루
+              borderColor: '#9FC5E8', // 호버 시
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#0F4E83', // 포커스 시 메인 블루
+              borderColor: '#0092BB', // 포커스 시
               borderWidth: '1px',
             },
           },
           '& .MuiInputBase-input': {
-            padding: '10px 14px', // 내부 텍스트 패딩 조절
+            padding: '10px 14px', // 내부 텍스트 패딩
           },
         },
       },
     },
-    MuiInputAdornment: {
+    MuiInputAdornment: { // Used in TableControls
       styleOverrides: {
         root: {
           color: '#94A3B8', // 아이콘 색상
+        }
+      }
+    },
+    MuiIcon: { // Used in Topbar
+      styleOverrides: {
+        root: {
+          '&:focus': { outline: 'none' }
+        }
+      }
+    }, 
+    MuiSelect: { // Used in TableControls
+      styleOverrides: {
+        root: {
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#9FC5E8',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#0092BB',
+            borderWidth: '1px',
+          },
+          color: '#9CA3AF'
         }
       }
     }
