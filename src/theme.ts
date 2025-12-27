@@ -3,19 +3,11 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#0F4E83', // 사이드바 활성화, 검색 버튼 등 (로그인 페이지와는 다르게 설정)
-      light: '#9FC5E8', // Light Blue
+      main: '#0F4E83', // 사이드바 활성화, 검색 버튼 등
+      light: '#9FC5E8', 
       dark: '#002060',  // 텍스트, 헤더 등 딥 블루
       contrastText: '#fff',
     },
-    secondary: { // 이미지의 "새 프로젝트" 버튼 색상
-      main: '#0092BB',
-      contrastText: '#fff',
-    },
-    error: { main: '#DC2626' }, // 위험 상태
-    success: { main: '#22C55E' }, // 완료됨 상태
-    warning: { main: '#FBBF24' }, // 보류됨 상태 (이미지에는 없지만 유추)
-    info: { main: '#9FC5E8' }, // 정보 (이미지 상 '정상 진행' 칩 색)
     text: {
       primary: '#002060', // 대부분의 본문 텍스트
       secondary: '#64748B', // 보조 텍스트 (e.g., 작은 설명)
@@ -25,7 +17,7 @@ export const theme = createTheme({
       default: '#F8FAFC', // 전체 배경
       paper: '#FFFFFF',   // 카드, 테이블 등 배경
     },
-    grey: { // 그림자 효과를 위해 특정 그레이 사용 (이미지 참조)
+    grey: { // 그림자 효과를 위해 특정 그레이 사용
       100: '#F1F5F9',
       200: '#E2E8F0',
       300: '#CBD5E1',
@@ -44,7 +36,7 @@ export const theme = createTheme({
     button: { textTransform: 'none', fontWeight: 600 },
   },
   shape: {
-    borderRadius: 8, // 전체적인 라운드값
+    borderRadius: 8, // 전체적인 라운드
   },
   components: {
     MuiCssBaseline: {
@@ -80,55 +72,10 @@ export const theme = createTheme({
         }
       },
     },
-    MuiPaper: { //Used in sidebar, topbar
+    MuiChip: { //Used in table
       styleOverrides: {
         root: {
-          boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.05)', // 이미지와 유사한 그림자
-        },
-      },
-      variants: [
-        {
-          props: { variant: 'outlined' },
-          style: {
-            borderColor: '#E2E8F0',
-          },
-        },
-      ],
-    },
-    MuiChip: {
-      variants: [
-        {
-          props: { color: 'info' }, // '정상 진행' 에 사용
-          style: {
-            backgroundColor: '#DBEAFE', // 배경색
-            color: '#2563EB', // 글자색
-            fontWeight: 600,
-            borderRadius: 6,
-          },
-        },
-        {
-          props: { color: 'error' }, // '위험' 에 사용
-          style: {
-            backgroundColor: '#FECACA',
-            color: '#EF4444',
-            fontWeight: 600,
-            borderRadius: 6,
-          },
-        },
-        {
-          props: { color: 'success' }, // '완료됨' 에 사용
-          style: {
-            backgroundColor: '#DCFCE7',
-            color: '#16A34A',
-            fontWeight: 600,
-            borderRadius: 6,
-          },
-        },
-      ],
-      styleOverrides: {
-        root: {
-          height: 24, // 이미지 Chip 높이
-          fontSize: '0.75rem',
+          height: 24,
         },
         label: {
           paddingLeft: 8,
@@ -136,36 +83,24 @@ export const theme = createTheme({
         }
       }
     },
-    MuiLinearProgress: {
+    MuiTableHead: { //Used in table
       styleOverrides: {
         root: {
-          height: 8,
-          borderRadius: 4,
-          backgroundColor: '#E5E7EB', // 이미지에 보이는 옅은 그레이 배경
-        },
-        bar: {
-          borderRadius: 4,
-        }
-      }
-    },
-    MuiTableHead: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#F1F5F9', // 헤더 배경색
+          backgroundColor: '#F1F5F9', 
         },
       },
     },
-    MuiTableCell: {
+    MuiTableCell: { //Used in table
       styleOverrides: {
         root: {
-          fontSize: '0.875rem', // 기본 셀 폰트 크기
+          fontSize: '0.875rem', 
           borderColor: '#E2E8F0',
-          padding: '12px 16px', // 이미지와 유사한 패딩
+          padding: '12px 16px',
         },
         head: {
           fontWeight: 600,
-          color: '#64748B', // 이미지와 같은 어두운 회색
-          fontSize: '0.8125rem', // 헤더 폰트 크기
+          color: '#64748B', 
+          fontSize: '0.8125rem', 
         },
       },
     },
@@ -197,6 +132,21 @@ export const theme = createTheme({
         },
       },
     },
+    MuiPaper: { //Used in sidebar, topbar
+      styleOverrides: {
+        root: {
+          boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.05)', // 이미지와 유사한 그림자
+        },
+      },
+      variants: [
+        {
+          props: { variant: 'outlined' },
+          style: {
+            borderColor: '#E2E8F0',
+          },
+        },
+      ],
+    },
     MuiTextField: { // Used in tableControls
       styleOverrides: {
         root: {
@@ -220,31 +170,43 @@ export const theme = createTheme({
         },
       },
     },
-    MuiInputAdornment: { // Used in TableControls
+    MuiInputAdornment: { // Used in tableControls
       styleOverrides: {
         root: {
           color: '#94A3B8', // 아이콘 색상
         }
       }
     },
-    MuiIcon: { // Used in Topbar
+    MuiSelect: { // Used in tableControls
+      styleOverrides: {
+        root: {
+          '&:hover .MuiOutlinedInput-notchedOutline': { // 호버 시
+            borderColor: '#9FC5E8',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': { // 포커스 시
+            borderColor: '#0092BB',
+            borderWidth: '1px',
+          },
+          color: '#9CA3AF'
+        }
+      }
+    },
+    MuiIconButton: { // Used in topbar
       styleOverrides: {
         root: {
           '&:focus': { outline: 'none' }
         }
       }
-    }, 
-    MuiSelect: { // Used in TableControls
+    },
+    MuiLinearProgress: {
       styleOverrides: {
         root: {
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#9FC5E8',
-          },
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: '#0092BB',
-            borderWidth: '1px',
-          },
-          color: '#9CA3AF'
+          height: 8,
+          borderRadius: 4,
+          backgroundColor: '#E5E7EB', // 이미지에 보이는 옅은 그레이 배경
+        },
+        bar: {
+          borderRadius: 4,
         }
       }
     }

@@ -9,7 +9,7 @@ export default function TableControls() {
         {/* 검색 */}
           <TextField
             size="small"
-            placeholder="프로젝트 검색"
+            placeholder="REQ ID"
             sx={{ minWidth: 280 }}
             slotProps={{
               input: {
@@ -29,7 +29,7 @@ export default function TableControls() {
 
           <TextField
             size="small"
-            placeholder="마감일 검색"
+            placeholder="FILE NAME"
             sx={{ minWidth: 280 }}
             slotProps={{
               input: {
@@ -54,17 +54,20 @@ export default function TableControls() {
           </Typography>
           
           {/* 필터 */}
-          <Select value={10} size="small"
-            >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
+          <Select value={0} size="small" sx={{ minWidth: 140 }}>
+            <MenuItem value={0}>IDP TYPE</MenuItem>
+            <MenuItem value={10}>ur</MenuItem>
+            <MenuItem value={20}>br</MenuItem>
+            <MenuItem value={30}>lb</MenuItem>
+            <MenuItem value={40}>da</MenuItem>
+            <MenuItem value={50}>jv</MenuItem>
           </Select>
 
-          <Select sx={{mr: 1}}
-            value={10} 
-            size="small">
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
+          <Select value={0}  size="small" sx={{mr: 1, minWidth: 140} }>
+            <MenuItem value={0}>STATUS</MenuItem>
+            <MenuItem value={10}>success</MenuItem>
+            <MenuItem value={20}>pending</MenuItem>
+            <MenuItem value={20}>error</MenuItem>
           </Select>
 
           {/* 정렬 */}
