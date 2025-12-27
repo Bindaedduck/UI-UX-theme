@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { 
-  Chip, Table as MuiTable, TableBody, TableCell, 
+  Chip, Table, TableBody, TableCell, 
   TableContainer, TableHead, TableRow, TablePagination 
 } from '@mui/material';
 import { tableItem } from '../tableItem';
 
-export default function Table() {
+export default function DataTable() {
   const [page, setPage] = useState(0); // 현재 페이지 of 전체 페이지
   const [rowsPerPage, setRowsPerPage] = useState(10); // 한 번에 보여줄 페이지
 
@@ -21,7 +21,7 @@ export default function Table() {
   return(
       <>
           <TableContainer sx={{ width: '100%' }}>
-            <MuiTable stickyHeader>
+            <Table stickyHeader>
               <TableHead sx={{ height: 60 }}> 
                 <TableRow>
                   <TableCell>REQ ID</TableCell>
@@ -70,7 +70,7 @@ export default function Table() {
                     </TableRow>
                   ))}
               </TableBody>
-            </MuiTable>
+            </Table>
           </TableContainer>
 
           <TablePagination
