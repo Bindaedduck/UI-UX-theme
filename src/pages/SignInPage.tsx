@@ -10,8 +10,7 @@ import {
   Link,
   Stack,
   InputAdornment,
-  IconButton,
-  CssBaseline,
+  IconButton
 } from '@mui/material';
 import {
   Window as WindowIcon,
@@ -20,29 +19,7 @@ import {
   VisibilityOutlined as VisibilityIcon,
   VisibilityOffOutlined as VisibilityOffIcon,
 } from '@mui/icons-material';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0083B0',
-    },
-    text: {
-      primary: '#1A237E',
-      secondary: '#757575',
-    },
-    background: {
-      default: '#F0F2F5',
-    },
-  },
-  typography: {
-    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-    h5: { fontWeight: 700 },
-  },
-  shape: {
-    borderRadius: 12,
-  },
-});
+import { styled } from '@mui/material/styles';
 
 const LoginPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(5),
@@ -67,8 +44,6 @@ export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
       <Box
         sx={{
           minHeight: '100vh',
@@ -77,7 +52,7 @@ export default function SignInPage() {
           justifyContent: 'center', // 가로 중앙
           alignItems: 'center',     // 세로 중앙
           backgroundColor: 'background.default',
-          p: 2, // 모바일 대응을 위한 최소 패딩
+          p: 2
         }}
       >
         {/* Container 대신 Stack을 직접 사용하여 너비 제한 및 중앙 정렬 */}
@@ -186,6 +161,5 @@ export default function SignInPage() {
           </Stack>
         </Stack>
       </Box>
-    </ThemeProvider>
   );
 }

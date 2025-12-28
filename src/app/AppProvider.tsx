@@ -7,6 +7,7 @@ export default function AppProvider({ children }: { children: React.ReactNode })
   return (
     <ThemeProvider theme={theme}>
         <CssBaseline />
+        {/* 모든 브라우저에서 일관적인 스타일 적용 */}
             <BrowserRouter>
                 {children}
             </BrowserRouter>

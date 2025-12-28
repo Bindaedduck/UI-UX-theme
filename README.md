@@ -1,28 +1,10 @@
-# Material UI
+# 개발환경
+- **React**: 18.2.0 (TypeScript)
+- **State/Routing**: Redux Toolkit, React Router 6.30.2
+- **Build Tool**: Vite 5.x
+- **Package Manager**: pnpm 9.x (Node.js 20.x 이상 권장)<br><br><br>
 
-### CSS 약어
-| 약어 | CSS 속성 | 설명 |
-| :--- | :--- | :--- |
-| **m** | `margin` | 상하좌우 전체 바깥 여백 |
-| **mt** | `margin-top` | 위쪽 바깥 여백 |
-| **mb** | `margin-bottom` | 아래쪽 바깥 여백 |
-| **ml** | `margin-left` | 왼쪽 바깥 여백 |
-| **mr** | `margin-right` | 오른쪽 바깥 여백 |
-| **mx** | `margin-left`, `right` | 좌우(X축) 바깥 여백 |
-| **my** | `margin-top`, `bottom` | 상하(Y축) 바깥 여백 |
-| **p** | `padding` | 상하좌우 전체 안쪽 여백 |
-| **pt** | `padding-top` | 위쪽 안쪽 여백 |
-| **pb** | `padding-bottom` | 아래쪽 안쪽 여백 |
-| **pl** | `padding-left` | 왼쪽 안쪽 여백 |
-| **pr** | `padding-right` | 오른쪽 안쪽 여백 |
-| **px** | `padding-left`, `right` | 좌우(X축) 안쪽 여백 |
-| **py** | `padding-top`, `bottom` | 상하(Y축) 안쪽 여백 |
-
-### Icon
-https://mui.com/material-ui/material-icons/?query=close<br/><br/>  
-
-# Directory structure
-
+# 프로젝트 구성
 ## 📁 App
 `app`은 애플리케이션의 전역 환경(App Infrastructure)을 담당합니다.  
 React 앱을 실행하기 위해 필요한 설정과 Provider를 한 곳에 모아두는 역할을 합니다.  
@@ -94,4 +76,26 @@ features/<br>
 Pages에서는 다음을 **지양**합니다
 - Redux slice 정의
 - API 직접 호출
-- 비즈니스 로직 처리
+- 비즈니스 로직 처리<br><br><br>
+
+# Material UI
+### CSS 약어
+| 약어 | CSS 속성 | 설명 |
+| :--- | :--- | :--- |
+| **m** | `margin` | 상하좌우 전체 바깥 여백 |
+| **mt** | `margin-top` | 위쪽 바깥 여백 |
+| **mb** | `margin-bottom` | 아래쪽 바깥 여백 |
+| **ml** | `margin-left` | 왼쪽 바깥 여백 |
+| **mr** | `margin-right` | 오른쪽 바깥 여백 |
+| **mx** | `margin-left`, `right` | 좌우(X축) 바깥 여백 |
+| **my** | `margin-top`, `bottom` | 상하(Y축) 바깥 여백 |
+| **p** | `padding` | 상하좌우 전체 안쪽 여백 |
+| **pt** | `padding-top` | 위쪽 안쪽 여백 |
+| **pb** | `padding-bottom` | 아래쪽 안쪽 여백 |
+| **pl** | `padding-left` | 왼쪽 안쪽 여백 |
+| **pr** | `padding-right` | 오른쪽 안쪽 여백 |
+| **px** | `padding-left`, `right` | 좌우(X축) 안쪽 여백 |
+| **py** | `padding-top`, `bottom` | 상하(Y축) 안쪽 여백 |
+
+### Icon
+https://mui.com/material-ui/material-icons/?query=close<br/><br/>  
