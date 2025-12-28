@@ -2,7 +2,19 @@
 - **React**: 18.2.0 (TypeScript)
 - **State/Routing**: Redux Toolkit, React Router 6.30.2
 - **Build Tool**: Vite 5.x
-- **Package Manager**: pnpm 9.x (Node.js 20.x 이상 권장)<br><br><br>
+- **Package Manager**: pnpm 9.x (Node.js 20.19.6)
+- **MUI (Material UI)**<br><br><br>
+
+# 설치 및 실행
+<pre>
+<code>
+pnpm install //패키지 설치
+
+pnpm dev //개발서버 실행
+</code>
+</pre>
+사이트 접속  :  http://localhost:5173<br><br><br>
+
 
 # 프로젝트 구성
 ## 📁 App

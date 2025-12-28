@@ -17,17 +17,27 @@ export default function Topbar(props: Option) {
                 bgcolor: '#fff',
                 borderBottom: '1px solid #eaeef3',
                 color: 'text.primary',
-                zIndex: (theme) => theme.zIndex.drawer + 1,
+
+                /* Sidebar영역 제외한 영역만 차지 */
                 left: `${props.sidebarWidth}px`,
                 width: `calc(100% - ${props.sidebarWidth}px)`,
-                minWidth: 800 //가로길이를 줄였을 때 components를 보여줄 최소 너비
+                
+                //zIndex: (theme) => theme.zIndex.drawer + 1,
             }}
         >
   
-            <Toolbar sx={{ justifyContent: 'space-between', px: 4 }}>
+            <Toolbar sx={{ justifyContent: 'space-between', px: 4, flexWrap: 'nowrap', overflow: 'hidden'}}>
                 {/* 왼쪽과 오른쪽에 content 배치 */}
 
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <Box 
+                    sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: 0.5,  
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis'
+                    }}>
                     <Typography variant="body1" color="text.secondary">
                         {props.subMenu}&nbsp; / &nbsp;
                     </Typography>
@@ -37,7 +47,14 @@ export default function Topbar(props: Option) {
                     </Typography>
                 </Box>
                 
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Box 
+                    sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: 1, 
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0
+                    }}>
                      <IconButton>
                         <NotificationsNoneOutlined />
                     </IconButton>

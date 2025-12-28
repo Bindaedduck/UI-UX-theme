@@ -1,12 +1,12 @@
-import { useState, type ReactNode } from 'react';
+import { useState, type ReactNode, type ElementType } from 'react';
 import { 
-  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography
+  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, Stack, Paper
 } from '@mui/material';
 import {  
     Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, GridView, Settings
 } from '@mui/icons-material';
 import { theme } from '.././theme';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 export const sidebarWidth = 240;
 
@@ -36,7 +36,7 @@ export default function Sidebar() {
     }
 
     return(
-        <>
+       <>
             <Drawer
                 variant="permanent" //Sidebar를 항상 보여줌
                 sx={{
@@ -44,33 +44,26 @@ export default function Sidebar() {
                     flexShrink: 0, //Sidebar 크기가 줄어들지 않게 고정
                     '& .MuiDrawer-paper': {
                         width: sidebarWidth,
-                        borderRight: `1px solid ${theme.palette.grey[200]}`,
-                    },
-                }}
-            >
+                        borderRight: `1px solid ${theme.palette.grey[200]}`
+                    }
+            }}>
                
-                <Box component={Link} to='/' //로고 클릭하면 메인페이지로 이동
+                <Box 
+                    component={RouterLink as ElementType} 
+                    to='/' //로고 클릭하면 메인페이지로 이동
                     sx={{ 
                         p: 3, 
                         display: 'flex', 
                         alignItems: 'center', 
                         gap: 1, 
-                        //borderBottom: `1px solid ${theme.palette.grey[200]}`,
                         color: 'inherit',
                         textDecoration: 'none',
-                        '&:visited': {
-                            color: 'inherit'
-                        },
-                        '&:hover': {
-                            color: '#0F4E83'
-                        }
-                    }}
-                >
+                        '&:visited': { color: 'inherit' },
+                        '&:hover': { color: '#0F4E83' }
+                }}>
                     <GridView color="primary" />
                     <Typography variant="h5" fontWeight={700}>IDP Portal</Typography>
                 </Box>
-                
-
 
                 {/* Main menu */}
                 <Typography variant="body2" color="text.disabled" sx={{px: 2, mt: 2, letterSpacing: '0.05em'}}>

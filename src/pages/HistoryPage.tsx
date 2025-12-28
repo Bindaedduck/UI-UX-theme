@@ -1,4 +1,4 @@
-import { Box, Container, Paper, Stack, Typography } from '@mui/material';
+import { Box, Paper, Stack, Typography } from '@mui/material';
 import Sidebar, { sidebarWidth } from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 import TableControls from '../components/TableControls';
@@ -6,13 +6,13 @@ import DataTable from '../components/DataTable';
 
 export default function HistoryPage() {
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "background.default" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh",  bgcolor: "background.default" }}>
       <Sidebar />
       <Topbar sidebarWidth={sidebarWidth} mainMenu="프로젝트" subMenu="프로젝트1"/>
       {/* Main */}
       <Box sx={{ flexGrow: 1 }}>
-        <Box sx = {{overflowX: 'auto', m: 3  }}>
-          <Container maxWidth={false} sx={{ minWidth: 1300, mt: 10}}>
+        <Box sx = {{ overflowX: 'auto', m: 3  }}>
+          <Box sx={{ minWidth: 1300, px: 4, pt: 10, pb: 4 }}>
             <Stack spacing={3}>
               <Stack direction="row" justifyContent="space-between" alignItems="flex-start">
                 <Box>
@@ -32,7 +32,7 @@ export default function HistoryPage() {
                 <DataTable />
               </Paper>
             </Stack>
-          </Container>
+          </Box> 
         </Box>
       </Box>
     </Box>
