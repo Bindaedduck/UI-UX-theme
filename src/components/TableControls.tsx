@@ -1,8 +1,8 @@
 import { Box, TextField, InputAdornment, Select, Typography, MenuItem, IconButton } from '@mui/material';
 import { 
+  Close as CloseIcon,
   Search as SearchIcon, 
   Sort as SortIcon, 
-  Close as CloseIcon
 } from '@mui/icons-material';
 import { theme } from '.././theme';
 

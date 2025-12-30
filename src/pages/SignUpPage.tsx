@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Paper, Typography, TextField, Button, Checkbox,
+  Box, Paper, Typography, TextField, Button, Checkbox, Divider,
   FormControlLabel, Link, Stack, InputAdornment, IconButton
 } from '@mui/material';
 import {
@@ -8,7 +8,9 @@ import {
   LockOutlined as LockIcon,
   VisibilityOutlined as VisibilityIcon,
   VisibilityOffOutlined as VisibilityOffIcon,
-  PersonOutline as PersonIcon
+  PersonOutline as PersonIcon,
+  MailOutline as MailIcon,
+  LockReset as LockResetIcon
 } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
@@ -17,7 +19,7 @@ const SignUpPaper = styled(Paper)(({ theme }) => ({
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
   boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.05)',
   width: '100%',
-  maxWidth: 420
+  maxWidth: 450
 }));
 
 const IconBox = styled(Box)(({ theme }) => ({
@@ -52,12 +54,12 @@ export default function SignUpPage() {
           spacing={4} 
           sx={{ 
             width: '100%',
-            maxWidth: 420 
+            maxWidth: 450 
           }}
         >
           <SignUpPaper elevation={0}>
-            <Stack spacing={7} alignItems="center">
-              <Stack spacing={2} alignItems="center">
+            <Stack spacing={5.5} alignItems="center">
+              <Stack spacing={3} alignItems="center">
                 <IconBox>
                   <WindowIcon fontSize="large" />
                 </IconBox>
@@ -67,7 +69,7 @@ export default function SignUpPage() {
                 </Typography>
               </Stack>
               
-              <Stack spacing={2.5} width="100%" sx={{ mt:4}}>
+              <Stack spacing={3} width="100%" sx={{ mt:4}}>
                 <Box>
                   <Typography variant="subtitle2" color="text.primary" fontWeight={600} sx={{ mb: 1 }}>
                     아이디
@@ -80,6 +82,26 @@ export default function SignUpPage() {
                         startAdornment: (
                           <InputAdornment position="start">
                             <PersonIcon fontSize="small" color="action" />
+                          </InputAdornment>
+                        ),
+                        
+                        sx: { borderRadius: 2, backgroundColor: '#F8F9FA' },
+                    }}}
+                  />
+                </Box>
+
+                <Box>
+                  <Typography variant="subtitle2" color="text.primary" fontWeight={600} sx={{ mb: 1 }}>
+                    이메일 주소
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    placeholder="Email"
+                    slotProps={{
+                      input: {
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <MailIcon fontSize="small" color="action" />
                           </InputAdornment>
                         ),
                         
@@ -117,25 +139,50 @@ export default function SignUpPage() {
                   />
                 </Box>
 
+                <Box>
+                  <Typography variant="subtitle2" color="text.primary" fontWeight={600} sx={{ mb: 1 }}>
+                    비밀번호 확인
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    type='password'
+                    placeholder="Confirm your password"
+                    slotProps={{
+                      input:{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LockResetIcon fontSize="small" color="action" />
+                          </InputAdornment>
+                        ),
+
+                        sx: { borderRadius: 2, backgroundColor: '#F8F9FA' },
+                    }}}
+                  />
+                </Box>
+
+
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
                   <FormControlLabel
                     control={<Checkbox size="small" />}
-                    label={<Typography variant="body2" color="text.secondary">로그인 상태 유지</Typography>}
+                    label={<Typography variant="body2" color="text.secondary">서비스 약관 및 개인정보 보호정책에 동의합니다.</Typography>}
                   />
                 </Stack>
-
-                <Button
-                  fullWidth
-                  variant="contained"
-                  size="large"
-                  sx={{ py: 1.5, borderRadius: 2, fontSize: '1rem', fontWeight: 600 }}
-                >
-                  회원 가입
-                </Button>
               </Stack>
 
+              <Button
+                fullWidth
+                variant="contained"
+                size="large"
+                sx={{ py: 1.5, borderRadius: 2, fontSize: '1rem', fontWeight: 600 }}
+              >
+                회원 가입
+              </Button>
+              
+
+              <Divider sx={{ width: '100%',  borderColor: (theme) =>  `1px solid  ${theme.palette.grey[300]}` }}/>
+              
               <Typography variant="body2" color="text.secondary">
-                이미 게정이 있으신가요?{' '}
+                이미 계정이 있으신가요?{' '}
                 <Link href="/signin" underline="hover" fontWeight={600}>로그인</Link>
               </Typography>
             </Stack>

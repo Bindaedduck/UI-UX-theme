@@ -1,6 +1,6 @@
 import { useState, type ReactNode, type ElementType } from 'react';
 import { 
-  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, Stack, Paper
+  Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography
 } from '@mui/material';
 import {  
     Dashboard as DashboardIcon, 

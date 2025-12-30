@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Paper, Typography, TextField, Button, Checkbox,
+  Box, Paper, Typography, TextField, Button, Checkbox, Divider,
   FormControlLabel, Link, Stack, InputAdornment, IconButton
 } from '@mui/material';
 import {
@@ -56,8 +56,8 @@ export default function SignInPage() {
           }}
         >
           <SingInPaper elevation={0}>
-            <Stack spacing={6.5} alignItems="center">
-              <Stack spacing={2} alignItems="center">
+            <Stack spacing={5.5} alignItems="center">
+              <Stack spacing={3} alignItems="center">
                 <IconBox>
                   <WindowIcon fontSize="large" />
                 </IconBox>
@@ -67,7 +67,7 @@ export default function SignInPage() {
                 </Typography>
               </Stack>
               
-              <Stack spacing={2.5} width="100%" sx={{ mt:4}}>
+              <Stack spacing={3} width="100%">
                 <Box>
                   <Typography variant="subtitle2" color="text.primary" fontWeight={600} sx={{ mb: 1 }}>
                     아이디
@@ -126,18 +126,20 @@ export default function SignInPage() {
                     비밀번호 찾기
                   </Link>
                 </Stack>
-
-                <Button
-                  fullWidth
-                  variant="contained"
-                  size="large"
-                  sx={{ py: 1.5, borderRadius: 2, fontSize: '1rem', fontWeight: 600 }}
-                >
-                  로그인
-                </Button>
               </Stack>
 
-              <Typography variant="body2" color="text.secondary">
+              <Button
+                fullWidth
+                variant="contained"
+                size="large"
+                sx={{ py: 1.5, borderRadius: 2, fontSize: '1rem', fontWeight: 600}}
+              >
+                로그인
+              </Button>
+              
+              <Divider sx={{ width: '100%',  borderColor: (theme) =>  `1px solid  ${theme.palette.grey[300]}` }}/>
+             
+              <Typography variant="body2" color="text.secondary" >
                 처음 오셨나요?{' '}
                 <Link href="/signup" underline="hover" fontWeight={600}>회원가입</Link>
               </Typography>
