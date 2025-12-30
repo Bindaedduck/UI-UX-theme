@@ -3,9 +3,14 @@ import {
   Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, Stack, Paper
 } from '@mui/material';
 import {  
-    Dashboard as DashboardIcon, Folder, Assignment, Group, BarChart, GridView, Settings
+    Dashboard as DashboardIcon, 
+    Folder as FolderIcon, 
+    Assignment as AssignmentIcon, 
+    Group as GroupIcon, 
+    BarChart as BarCahrtIcon, 
+    GridView as GridViewIcon, 
+    Settings as SettingsIcon
 } from '@mui/icons-material';
-import { theme } from '.././theme';
 import { Link as RouterLink } from 'react-router-dom';
 
 export const sidebarWidth = 240;
@@ -21,14 +26,14 @@ export default function Sidebar() {
 
     const mainMenuItems: sidebarItem[] = [
         { text: '대시보드', icon: <DashboardIcon /> },
-        { text: '프로젝트', icon: <Folder /> },
-        { text: '작업', icon: <Assignment /> },
-        { text: '팀', icon: <Group /> },
-        { text: '보고서', icon: <BarChart /> }
+        { text: '프로젝트', icon: <FolderIcon /> },
+        { text: '작업', icon: <AssignmentIcon /> },
+        { text: '팀', icon: <GroupIcon /> },
+        { text: '보고서', icon: <BarCahrtIcon /> }
     ]
 
     const systemMenuItems: sidebarItem[] = [
-        { text: '설정', icon: <Settings /> },
+        { text: '설정', icon: <SettingsIcon /> },
     ]
 
     const handleListItemClick = (item: sidebarItem) => {
@@ -42,15 +47,14 @@ export default function Sidebar() {
                 sx={{
                     width: sidebarWidth,
                     flexShrink: 0, //Sidebar 크기가 줄어들지 않게 고정
-                    '& .MuiDrawer-paper': {
-                        width: sidebarWidth,
-                        borderRight: `1px solid ${theme.palette.grey[200]}`
-                    }
+                    '& .MuiDrawer-paper': { width: sidebarWidth }
             }}>
                
                 <Box 
+                    /* 로고 클릭하면 메인페이지로 이동 */
                     component={RouterLink as ElementType} 
-                    to='/' //로고 클릭하면 메인페이지로 이동
+                    to='/'
+                    
                     sx={{ 
                         p: 3, 
                         display: 'flex', 
@@ -59,9 +63,9 @@ export default function Sidebar() {
                         color: 'inherit',
                         textDecoration: 'none',
                         '&:visited': { color: 'inherit' },
-                        '&:hover': { color: '#0F4E83' }
+                        '&:hover': { color: 'primary.main' }
                 }}>
-                    <GridView color="primary" />
+                    <GridViewIcon color="primary" />
                     <Typography variant="h5" fontWeight={700}>IDP Portal</Typography>
                 </Box>
 
@@ -83,7 +87,7 @@ export default function Sidebar() {
                 </List>
                 
                 {/* System menu */}
-                <Box sx={{borderTop: `1px solid ${theme.palette.grey[200]}`, mt: 'auto'}}>
+                <Box sx={{borderTop: (theme) =>  `1px solid  ${theme.palette.grey[200]}`, mt: 'auto'}}>
                     <Typography variant="body2" color="text.disabled" sx={{px: 2, mt: 2, letterSpacing: '0.05em'}}>
                         <b>SYSTEM MENU</b>
                     </Typography>

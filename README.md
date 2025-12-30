@@ -19,7 +19,7 @@ pnpm dev //개발서버 실행
 # 프로젝트 구성
 ## 📁 App
 `app`은 애플리케이션의 전역 환경(App Infrastructure)을 담당합니다.  
-React 앱을 실행하기 위해 필요한 설정과 Provider를 한 곳에 모아두는 역할을 합니다.  
+React 앱을 실행하기 위해 필요한 설정과 Provider를 한 곳에 모아두는 역할을 합니다.<br><br>
 `구조`<br>
 app/<br>
  ├─ AppProvider.tsx     # 모든 전역 Provider를 조합<br>
@@ -35,7 +35,7 @@ URL ↔ Page 매핑과 라우팅 규칙을 관리하는 역할을 담당합니�
 Redux, API, 특정 도메인(Project, Invoice 등)에 대한 의존성이 없으며 props 기반으로 동작하는 **재사용 가능한 UI 블록**만 포함합니다. 
 
 ### 📌 구성 원칙
-- 컴포넌트는 **도메인 지식 없이 재사용 가능**해야 합니다..
+- 컴포넌트는 **도메인 지식 없이 재사용 가능**해야 합니다.
 - 상태 관리(Redux) 및 API 호출 로직은 포함하지 않습니다.
 - 비즈니스 로직이 필요한 경우 `features` 영역에서 컴포넌트를 조합하여 사용합니다.
 - 파일명은 `PascalCase`, 폴더명은 `lowercase`를 사용합니다.

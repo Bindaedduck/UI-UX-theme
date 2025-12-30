@@ -1,5 +1,8 @@
 import { Box, Typography, Avatar, IconButton,  AppBar, Toolbar } from '@mui/material';
-import { HelpOutlineOutlined, NotificationsNoneOutlined } from '@mui/icons-material';
+import { 
+    HelpOutlineOutlined as HelpIcon, 
+    NotificationsNoneOutlined as NotificationsIcon
+} from '@mui/icons-material';
 
 interface Option{
     sidebarWidth: number;
@@ -27,7 +30,7 @@ export default function Topbar(props: Option) {
         >
   
             <Toolbar sx={{ justifyContent: 'space-between', px: 4, flexWrap: 'nowrap', overflow: 'hidden'}}>
-                {/* 왼쪽과 오른쪽에 content 배치 */}
+            {/* 왼쪽과 오른쪽에 content 배치 */}
 
                 <Box 
                     sx={{ 
@@ -56,11 +59,11 @@ export default function Topbar(props: Option) {
                         flexShrink: 0
                     }}>
                      <IconButton>
-                        <NotificationsNoneOutlined />
+                        <NotificationsIcon />
                     </IconButton>
                     
                     <IconButton>
-                        <HelpOutlineOutlined />
+                        <HelpIcon />
                     </IconButton>
 
                     <IconButton>

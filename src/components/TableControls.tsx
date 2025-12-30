@@ -1,5 +1,9 @@
-import { Box, TextField, InputAdornment, Select, Typography, MenuItem } from '@mui/material';
-import { Search, Sort, Close } from '@mui/icons-material';
+import { Box, TextField, InputAdornment, Select, Typography, MenuItem, IconButton } from '@mui/material';
+import { 
+  Search as SearchIcon, 
+  Sort as SortIcon, 
+  Close as CloseIcon
+} from '@mui/icons-material';
 import { theme } from '.././theme';
 
 export default function TableControls() {
@@ -15,12 +19,12 @@ export default function TableControls() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Search fontSize="small" />
+                    <SearchIcon fontSize="small" />
                   </InputAdornment>
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <Close fontSize="small" />
+                    <CloseIcon fontSize="small" />
                   </InputAdornment>
                 )
               }
@@ -35,12 +39,12 @@ export default function TableControls() {
               input: {
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Search fontSize="small" />
+                    <SearchIcon fontSize="small" />
                   </InputAdornment>
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
-                    <Close fontSize="small" />
+                    <CloseIcon fontSize="small" />
                   </InputAdornment>
                 )
               }
@@ -72,7 +76,7 @@ export default function TableControls() {
 
           {/* 정렬 */}
           <Box sx={{ display: 'flex', borderLeft: `1px solid ${theme.palette.grey[200]}`, alignItems: 'center'}}>
-            <Sort sx={{ml: 3, mr: 2, color: 'text.disabled'}}></Sort>
+            <IconButton><SortIcon sx={{ml: 3, mr: 2, color: 'text.disabled'}}></SortIcon></IconButton>
             <Typography variant='body2' color='text.disabled' sx={{ letterSpacing: '0.05em'}}>
             <b>Sort by</b>
             </Typography>

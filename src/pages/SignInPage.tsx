@@ -1,38 +1,29 @@
 import React, { useState } from 'react';
 import {
-  Box,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Link,
-  Stack,
-  InputAdornment,
-  IconButton
+  Box, Paper, Typography, TextField, Button, Checkbox,
+  FormControlLabel, Link, Stack, InputAdornment, IconButton
 } from '@mui/material';
 import {
   Window as WindowIcon,
-  EmailOutlined as EmailIcon,
   LockOutlined as LockIcon,
   VisibilityOutlined as VisibilityIcon,
   VisibilityOffOutlined as VisibilityOffIcon,
+  PersonOutline as PersonIcon
 } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
-const LoginPaper = styled(Paper)(({ theme }) => ({
+const SingInPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(5),
-  borderRadius: theme.shape.borderRadius * 1.5,
+  borderRadius: Number(theme.shape.borderRadius) * 1.5,
   boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.05)',
   width: '100%',
-  maxWidth: 420, // 시안과 가장 유사한 너비
+  maxWidth: 420
 }));
 
 const IconBox = styled(Box)(({ theme }) => ({
   width: 48,
   height: 48,
-  backgroundColor: '#E3F2FD',
+  backgroundColor: theme.palette.grey[200],
   borderRadius: theme.shape.borderRadius,
   display: 'flex',
   justifyContent: 'center',
@@ -47,90 +38,92 @@ export default function SignInPage() {
       <Box
         sx={{
           minHeight: '100vh',
-          width: '100vw', // 뷰포트 너비 전체 사용
+          width: '100vw', 
           display: 'flex',
-          justifyContent: 'center', // 가로 중앙
-          alignItems: 'center',     // 세로 중앙
+          justifyContent: 'center', 
+          alignItems: 'center',     
           backgroundColor: 'background.default',
           p: 2
         }}
       >
-        {/* Container 대신 Stack을 직접 사용하여 너비 제한 및 중앙 정렬 */}
+        
         <Stack 
           alignItems="center" 
           spacing={4} 
           sx={{ 
             width: '100%',
-            maxWidth: 420 // 카드의 maxWidth와 일치시켜 일직선 정렬
+            maxWidth: 420 
           }}
         >
-          <LoginPaper elevation={0}>
-            <Stack spacing={3} alignItems="center">
-              <IconBox>
-                <WindowIcon fontSize="large" />
-              </IconBox>
+          <SingInPaper elevation={0}>
+            <Stack spacing={6.5} alignItems="center">
+              <Stack spacing={2} alignItems="center">
+                <IconBox>
+                  <WindowIcon fontSize="large" />
+                </IconBox>
+                
+                <Typography variant="h5" color="text.primary">
+                  IDP Portal
+                </Typography>
+              </Stack>
               
-              <Box textAlign="center">
-                <Typography variant="h5" color="text.primary" gutterBottom>
-                  Welcome Back
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Sign in to access your dashboard
-                </Typography>
-              </Box>
-
-              <Stack spacing={2.5} width="100%">
+              <Stack spacing={2.5} width="100%" sx={{ mt:4}}>
                 <Box>
                   <Typography variant="subtitle2" color="text.primary" fontWeight={600} sx={{ mb: 1 }}>
-                    Email Address
+                    아이디
                   </Typography>
                   <TextField
                     fullWidth
-                    placeholder="name@company.com"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <EmailIcon fontSize="small" color="action" />
-                        </InputAdornment>
-                      ),
-                      sx: { borderRadius: 2, backgroundColor: '#F8F9FA' },
-                    }}
+                    placeholder="Username"
+                    slotProps={{
+                      input: {
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PersonIcon fontSize="small" color="action" />
+                          </InputAdornment>
+                        ),
+                        
+                        sx: { borderRadius: 2, backgroundColor: '#F8F9FA' },
+                    }}}
                   />
                 </Box>
 
                 <Box>
                   <Typography variant="subtitle2" color="text.primary" fontWeight={600} sx={{ mb: 1 }}>
-                    Password
+                    비밀번호
                   </Typography>
                   <TextField
                     fullWidth
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="••••••••"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <LockIcon fontSize="small" color="action" />
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
-                            {showPassword ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                      sx: { borderRadius: 2, backgroundColor: '#F8F9FA' },
-                    }}
+                    placeholder="Password"
+                    slotProps={{
+                      input:{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <LockIcon fontSize="small" color="action" />
+                          </InputAdornment>
+                        ),
+
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                              {showPassword ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+
+                        sx: { borderRadius: 2, backgroundColor: '#F8F9FA' },
+                    }}}
                   />
                 </Box>
 
                 <Stack direction="row" justifyContent="space-between" alignItems="center">
                   <FormControlLabel
                     control={<Checkbox size="small" />}
-                    label={<Typography variant="body2" color="text.secondary">Remember me</Typography>}
+                    label={<Typography variant="body2" color="text.secondary">로그인 상태 유지</Typography>}
                   />
                   <Link href="#" variant="body2" underline="hover" fontWeight={500}>
-                    Forgot password?
+                    비밀번호 찾기
                   </Link>
                 </Stack>
 
@@ -138,27 +131,20 @@ export default function SignInPage() {
                   fullWidth
                   variant="contained"
                   size="large"
-                  sx={{ py: 1.5, borderRadius: 2, fontSize: '1rem', fontWeight: 600, textTransform: 'none' }}
+                  sx={{ py: 1.5, borderRadius: 2, fontSize: '1rem', fontWeight: 600 }}
                 >
-                  Login
+                  로그인
                 </Button>
               </Stack>
 
               <Typography variant="body2" color="text.secondary">
-                Don't have an account?{' '}
-                <Link href="#" underline="hover" fontWeight={600}>Sign up</Link>
+                처음 오셨나요?{' '}
+                <Link href="/signup" underline="hover" fontWeight={600}>회원가입</Link>
               </Typography>
             </Stack>
-          </LoginPaper>
+          </SingInPaper>
 
-          {/* Footer Links */}
-          <Stack direction="row" spacing={2} alignItems="center" sx={{ opacity: 0.7 }}>
-            <Link href="#" variant="caption" color="text.secondary" underline="hover">Privacy Policy</Link>
-            <Typography variant="caption" color="text.secondary">•</Typography>
-            <Link href="#" variant="caption" color="text.secondary" underline="hover">Terms of Service</Link>
-            <Typography variant="caption" color="text.secondary">•</Typography>
-            <Link href="#" variant="caption" color="text.secondary" underline="hover">Help Center</Link>
-          </Stack>
+          <Typography variant="caption" color="text.secondary">Copyright ⓒ 2025 KSTEC. All Rights Reserved.</Typography>
         </Stack>
       </Box>
   );
