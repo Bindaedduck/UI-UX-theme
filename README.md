@@ -2,7 +2,8 @@
 - **React**: 18.2.0 (TypeScript)
 - **State/Routing**: Redux Toolkit, React Router 6.30.2
 - **Build Tool**: Vite 5.x
-- **Package Manager**: pnpm 9.x (Node.js 20.19.6)
+- **Package Manager**: pnpm 9.x
+- **Runtime**: Node.js 20.19.6
 - **MUI (Material UI)**<br><br><br>
 
 # 설치 및 실행
