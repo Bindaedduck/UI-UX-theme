@@ -13,13 +13,14 @@ const HistoryTableColumns: Column<HistoryTableRow>[] = [
     {
         id: 'biz_cls',
         label: 'BIZ CLS',
-        align: 'center'
+        minWidth: 100
     },
     {
         id: 'idp_type',
         label: 'IDP TYPE',
         align: 'center',
         minWidth: 100,
+        sortDirection: false,
         format: (value: string) => <Chip label={value} />
     },
     {
@@ -42,6 +43,7 @@ const HistoryTableColumns: Column<HistoryTableRow>[] = [
         id: 'status',
         label: 'STATUS',
         align: 'center',
+        sortDirection: false,
         format: (value: string) => {
             const color = value === 'success' ? 'success' : value === 'pending' ? 'default' : 'error';
             return <Chip label={value} color={color} variant='outlined'/>;
@@ -50,13 +52,11 @@ const HistoryTableColumns: Column<HistoryTableRow>[] = [
     {
         id: 'start_date_time',
         label: 'START DATE TIME',
-        align: 'center',
         minWidth: 150
     },
     {
         id: 'end_date_time',
         label: 'END DATE TIME',
-        align: 'center',
         minWidth: 150
     }    
 ];

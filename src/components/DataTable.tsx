@@ -65,9 +65,22 @@ export default function DataTable<T>({
   };
 
   const createSortHandler = (property: keyof T, _: React.MouseEvent<unknown>) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
+    if (orderBy !== property) {
+      // 새로운 컬럼 클릭: 오름차순 시작
+      setOrder('asc');
+      setOrderBy(property);
+    } else {
+      // 같은 컬럼 클릭: asc -> desc -> null(기본) 순환
+      if (order === 'asc') {
+        setOrder('desc');
+      } else if (order === 'desc') {
+        setOrder(null);
+        setOrderBy(null);
+      } else {
+        setOrder('asc');
+        setOrderBy(property);
+      }
+    }
   };
 
   const visibleRows = useMemo(() => {
@@ -97,6 +110,7 @@ export default function DataTable<T>({
                           active={orderBy === column.id}
                           direction={orderBy === column.id && order ? order : 'asc'}
                           onClick={(e) => createSortHandler(column.id as keyof T, e)}
+                          sx={{ minWidth: column.minWidth }}
                         >
                           {column.label}
                           {orderBy === column.id ? (
