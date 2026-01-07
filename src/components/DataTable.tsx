@@ -4,13 +4,14 @@ import {
   TableContainer, TableHead, TableRow, TablePagination, 
   TableSortLabel
 } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
 
 export interface Column<T> {
     id: keyof T | 'actions';
     label: string;
     align?: 'left' | 'center' | 'right';
     minWidth?: number;
-    
+    sortDirection?: Order | false;
     format?: (value: any, row: T) => ReactNode;
 }
 
@@ -23,6 +24,25 @@ interface DataTableProps<T> {
 }
 
 type Order = 'asc' | 'desc';
+
+function getComparator<T, Key extends keyof T>(
+  order: Order,
+  orderBy: Key,
+): (a: T, b: T) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+function descendingComparator<T, Key extends keyof T>(
+    a: T, 
+    b: T, 
+    orderBy: keyof T
+  ) {
+  if (b[orderBy] < a[orderBy]) return -1;
+  if (b[orderBy] > a[orderBy]) return 1;
+  return 0;
+}
 
 export default function DataTable<T>({
   columns, 
@@ -44,12 +64,20 @@ export default function DataTable<T>({
     setPage(0);
   };
 
-  const visibleRows = useMemo(
-    () =>
-      [...rows]
-        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [ page, rowsPerPage]
-  );
+  const createSortHandler = (property: keyof T, _: React.MouseEvent<unknown>) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  const visibleRows = useMemo(() => {
+      if(!order || !orderBy) 
+        return [...rows].slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      else
+        return [...rows]
+                  .sort(getComparator(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+   },[ page, rowsPerPage, order, orderBy]);
 
   return(
       <>
@@ -62,9 +90,22 @@ export default function DataTable<T>({
                         key={column.id as string}
                         align={column.align || 'left'}
                         sx={{ minWidth: column.minWidth }}
-                        sortDirection={false}
+                        sortDirection={orderBy === column.id && order ? order : false}
                     >
-                        {column.label}
+                      {!(column.sortDirection === false) ? 
+                        <TableSortLabel
+                          active={orderBy === column.id}
+                          direction={orderBy === column.id && order ? order : 'asc'}
+                          onClick={(e) => createSortHandler(column.id as keyof T, e)}
+                        >
+                          {column.label}
+                          {orderBy === column.id ? (
+                            <Box component="span" sx={visuallyHidden}>
+                              {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                            </Box>
+                          ) : null}
+                        </TableSortLabel>
+                      : column.label}
                     </TableCell>
                   ))}
                 </TableRow>

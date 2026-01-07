@@ -24,16 +24,19 @@ const HistoryTableColumns: Column<HistoryTableRow>[] = [
     },
     {
         id: 'file_name',
-        label: 'FILE NAME'
+        label: 'FILE NAME',
+        sortDirection: false
     },
     {
         id: 'file_path',
-        label: 'FILE PATH'
+        label: 'FILE PATH',
+        sortDirection: false
     },
     {
         id: 'page',
         label: 'PAGE',
-        align: 'center'
+        align: 'center',
+        sortDirection: false
     },
     {
         id: 'status',
