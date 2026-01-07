@@ -4,7 +4,7 @@ import {
   Search as SearchIcon, 
   Sort as SortIcon, 
 } from '@mui/icons-material';
-import { theme } from '.././theme';
+import { theme } from '../app/theme';
 
 export default function TableControls() {
     return (
@@ -75,12 +75,12 @@ export default function TableControls() {
           </Select>
 
           {/* 정렬 */}
-          <Box sx={{ display: 'flex', borderLeft: `1px solid ${theme.palette.grey[200]}`, alignItems: 'center'}}>
+          {/* <Box sx={{ display: 'flex', borderLeft: `1px solid ${theme.palette.grey[200]}`, alignItems: 'center'}}>
             <IconButton><SortIcon sx={{ml: 3, mr: 2, color: 'text.disabled'}}></SortIcon></IconButton>
             <Typography variant='body2' color='text.disabled' sx={{ letterSpacing: '0.05em'}}>
             <b>Sort by</b>
             </Typography>
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     )

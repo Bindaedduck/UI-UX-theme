@@ -15,7 +15,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 export const sidebarWidth = 240;
 
-interface sidebarItem {
+interface SidebarItem {
     text: string;
     icon: ReactNode;
 }
@@ -24,7 +24,7 @@ export default function Sidebar() {
 
     const [selectedItem, setSelectedItem] = useState(''); //선택된 아이템 State
 
-    const mainMenuItems: sidebarItem[] = [
+    const mainMenuItems: SidebarItem[] = [
         { text: '대시보드', icon: <DashboardIcon /> },
         { text: '프로젝트', icon: <FolderIcon /> },
         { text: '작업', icon: <AssignmentIcon /> },
@@ -32,11 +32,11 @@ export default function Sidebar() {
         { text: '보고서', icon: <BarCahrtIcon /> }
     ]
 
-    const systemMenuItems: sidebarItem[] = [
+    const systemMenuItems: SidebarItem[] = [
         { text: '설정', icon: <SettingsIcon /> },
     ]
 
-    const handleListItemClick = (item: sidebarItem) => {
+    const handleListItemClick = (item: SidebarItem) => {
         setSelectedItem(item.text);
     }
 

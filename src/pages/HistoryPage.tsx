@@ -2,7 +2,7 @@ import { Box, Paper, Stack, Typography } from '@mui/material';
 import Sidebar, { sidebarWidth } from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 import TableControls from '../components/TableControls';
-import DataTable from '../components/DataTable';
+import HistoryTable from '../features/history/components/HistoryTable';
 
 export default function HistoryPage() {
   return (
@@ -29,7 +29,7 @@ export default function HistoryPage() {
               </Paper>
 
               <Paper sx={{ p: 3 }}>
-                <DataTable />
+                <HistoryTable />
               </Paper>
             </Stack>
           </Box> 

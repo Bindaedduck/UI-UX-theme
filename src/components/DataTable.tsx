@@ -1,22 +1,55 @@
-import { useState } from 'react';
+import { type ReactNode, useMemo, useState } from 'react';
 import { 
-  Chip, Table, TableBody, TableCell, 
-  TableContainer, TableHead, TableRow, TablePagination 
+  Chip, Table, TableBody, TableCell, Box,
+  TableContainer, TableHead, TableRow, TablePagination, 
+  TableSortLabel
 } from '@mui/material';
-import { tableItem } from '../tableItem';
 
-export default function DataTable() {
+export interface Column<T> {
+    id: keyof T | 'actions';
+    label: string;
+    align?: 'left' | 'center' | 'right';
+    minWidth?: number;
+    
+    format?: (value: any, row: T) => ReactNode;
+}
+
+interface DataTableProps<T> {
+    columns: Column<T>[];
+    rows: T[];
+    rowKey: keyof T;
+    rowsPerPageOptions?: number[];
+    defaultRowPerPage?: number;
+}
+
+type Order = 'asc' | 'desc';
+
+export default function DataTable<T>({
+  columns, 
+  rows, 
+  rowKey,
+  rowsPerPageOptions = [10, 25, 100],
+  defaultRowPerPage = 10
+
+}: DataTableProps<T>) {
   const [page, setPage] = useState(0); // 현재 페이지 of 전체 페이지
-  const [rowsPerPage, setRowsPerPage] = useState(10); // 한 번에 보여줄 페이지
+  const [rowsPerPage, setRowsPerPage] = useState(defaultRowPerPage); // 한 번에 보여줄 페이지
+  const [order, setOrder] = useState<Order | null>(null);
+  const [orderBy, setOrderBy] = useState<keyof T | null>(null);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+  const handleChangePage = (_: unknown, newPage: number) => setPage(newPage);
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const visibleRows = useMemo(
+    () =>
+      [...rows]
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
+    [ page, rowsPerPage]
+  );
 
   return(
       <>
@@ -24,49 +57,37 @@ export default function DataTable() {
             <Table stickyHeader>
               <TableHead sx={{ height: 60 }}> 
                 <TableRow>
-                  <TableCell>REQ ID</TableCell>
-                  <TableCell align='center'>BIZ CLS</TableCell>
-                  <TableCell align='center' sx={{ minWidth: 100 }}>IDP TYPE</TableCell>
-                  <TableCell>FILE NAME</TableCell>
-                  <TableCell>FILE PATH</TableCell>
-                  <TableCell align='center'>PAGE</TableCell>
-                  <TableCell align='center'>STATUS</TableCell>
-                  <TableCell align='center' sx={{ minWidth: 150 }}>START DATE TIME</TableCell>
-                  <TableCell align='center' sx={{ minWidth: 150 }}>END DATE TIME</TableCell>
+                  {columns.map((column) => (
+                    <TableCell
+                        key={column.id as string}
+                        align={column.align || 'left'}
+                        sx={{ minWidth: column.minWidth }}
+                        sortDirection={false}
+                    >
+                        {column.label}
+                    </TableCell>
+                  ))}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {tableItem
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                {visibleRows
                   .map((row) => (
-                    <TableRow key={row.req_id} hover sx={{ height: 80 }}>
-                      <TableCell>{row.req_id}</TableCell>
-                      <TableCell align='center'><Chip label={row.biz_cls}/></TableCell>
-                      <TableCell align='center'>{row.idp_type}</TableCell>
-                      <TableCell>{row.file_name}</TableCell>
-                      <TableCell>{row.file_path}</TableCell>
-                      <TableCell align='center'>{row.page}</TableCell>
-                      <TableCell align='center'>
-                        { row.status === 'success' ? 
-                            <Chip label={row.status} color='success' variant='outlined'/> : 
-                          row.status === 'pending' ? 
-                            <Chip label={row.status} variant='outlined'/> :
-                          <Chip label={row.status} color='error' variant='outlined'/>
-                        }
-                        
-                      </TableCell>
-                      <TableCell align='center'>{row.start_date_time}</TableCell>
-                      <TableCell align='center'>{row.end_date_time}</TableCell>
-
-                      {/* <TableCell sx={{ width: 180 }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                          <LinearProgress variant="determinate" value={row.progress} sx={{ flexGrow: 1 }} />
-                          <Typography variant="caption">{row.progress}%</Typography>
-                        </Box>
-                      </TableCell> */}
-                      {/* <TableCell align="right">
-                        <IconButton size="small"><MoreVert /></IconButton>
-                      </TableCell> */}
+                    <TableRow
+                        key={row[rowKey] as string}
+                        hover
+                        sx={{ height: 80 }}
+                    >
+                        {columns.map((column) => {
+                            const value = row[column.id as keyof T];
+                            return (
+                                <TableCell
+                                    key={`${row[rowKey]}-${column.id as string}`}
+                                    align={column.align || 'left'}
+                                >
+                                    {column.format ? column.format(value, row) : (value as ReactNode)}
+                                </TableCell>
+                            )
+                        })}
                     </TableRow>
                   ))}
               </TableBody>
@@ -74,9 +95,9 @@ export default function DataTable() {
           </TableContainer>
 
           <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
+            rowsPerPageOptions={rowsPerPageOptions}
             component="div"
-            count={tableItem.length}
+            count={rows.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
