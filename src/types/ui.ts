@@ -39,3 +39,9 @@ export interface DataTableProps<T> {
     defaultRowPerPage?: number;
 }
 
+export interface DataProps {
+  searchBoxes?: SearchBox[];
+  filterBoxes: FilterBox[];
+}
+
+

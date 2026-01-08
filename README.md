@@ -89,7 +89,11 @@ features/<br>
 Pages에서는 다음을 **지양**합니다
 - Redux slice 정의
 - API 직접 호출
-- 비즈니스 로직 처리<br><br><br>
+- 비즈니스 로직 처리
+
+## 📁 types
+- common.ts : 여러 도메인에서 공통으로 쓰이는 범용 타입
+- ui.ts : 테이블, 버튼 등 공통 UI 컴포넌트와 밀접한 타입<br><br><br>
 
 # Material UI
 ### CSS 약어

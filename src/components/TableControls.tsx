@@ -4,13 +4,7 @@ import {
   Close as CloseIcon,
   Search as SearchIcon
 } from '@mui/icons-material';
-import type { FilterBox, SearchBox } from '../types/ui';
-
-
-interface DataProps {
-  searchBoxes?: SearchBox[];
-  filterBoxes: FilterBox[];
-}
+import type { DataProps } from '../types/ui';
 
 export default function TableControls({searchBoxes, filterBoxes}: DataProps)  {
 
