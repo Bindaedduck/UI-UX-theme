@@ -1,29 +1,10 @@
 import { type ReactNode, useMemo, useState } from 'react';
 import { 
-  Chip, Table, TableBody, TableCell, Box,
-  TableContainer, TableHead, TableRow, TablePagination, 
-  TableSortLabel
+  Box, Table, TableBody, TableCell,TableContainer, 
+  TableHead, TableRow, TablePagination, TableSortLabel
 } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
-
-export interface Column<T> {
-    id: keyof T | 'actions';
-    label: string;
-    align?: 'left' | 'center' | 'right';
-    minWidth?: number;
-    sortDirection?: Order | false;
-    format?: (value: any, row: T) => ReactNode;
-}
-
-interface DataTableProps<T> {
-    columns: Column<T>[];
-    rows: T[];
-    rowKey: keyof T;
-    rowsPerPageOptions?: number[];
-    defaultRowPerPage?: number;
-}
-
-type Order = 'asc' | 'desc';
+import type { DataTableProps, Order } from '../types/ui';
 
 function getComparator<T, Key extends keyof T>(
   order: Order,
@@ -34,7 +15,7 @@ function getComparator<T, Key extends keyof T>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-function descendingComparator<T, Key extends keyof T>(
+function descendingComparator<T>(
     a: T, 
     b: T, 
     orderBy: keyof T

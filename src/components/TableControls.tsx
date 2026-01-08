@@ -1,55 +1,61 @@
-import { Box, TextField, InputAdornment, Select, Typography, MenuItem, IconButton } from '@mui/material';
+import { useState } from 'react';
+import { Box, TextField, InputAdornment, Select, Typography, MenuItem, type SelectChangeEvent, FormControl, InputLabel } from '@mui/material';
 import { 
   Close as CloseIcon,
-  Search as SearchIcon, 
-  Sort as SortIcon, 
+  Search as SearchIcon
 } from '@mui/icons-material';
-import { theme } from '../app/theme';
+import type { FilterBox, SearchBox } from '../types/ui';
 
-export default function TableControls() {
+
+interface DataProps {
+  searchBoxes?: SearchBox[];
+  filterBoxes: FilterBox[];
+}
+
+export default function TableControls({searchBoxes, filterBoxes}: DataProps)  {
+
+  const initialFilterValue:Record<string, string> = filterBoxes.reduce((acc, filterBox) =>{
+    acc[filterBox.name] = '';
+    return acc;
+  },{} as Record<string, string>);
+  
+  const [filterValue, setFilterValue] = useState(initialFilterValue);
+
+  const handleChange = (event: SelectChangeEvent) => {
+    const { name, value } = event.target;
+
+    setFilterValue({
+      ...initialFilterValue, //나머지 필터 값들은 초기화
+      [name]: value,
+    });
+  };
+
     return (
       <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-        {/* 검색 */}
-          <TextField
-            size="small"
-            placeholder="REQ ID"
-            sx={{ minWidth: 280 }}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <CloseIcon fontSize="small" />
-                  </InputAdornment>
-                )
-              }
-            }}
-          />
-
-          <TextField
-            size="small"
-            placeholder="FILE NAME"
-            sx={{ minWidth: 280 }}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
-                  </InputAdornment>
-                ),
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <CloseIcon fontSize="small" />
-                  </InputAdornment>
-                )
-              }
-            }}
-          />
+          {/* 검색 */}
+          {searchBoxes ? searchBoxes.map((searchBox) => (
+            <TextField
+              key={searchBox.id}
+              placeholder={searchBox.placeholder}
+              size={searchBox.size}
+              sx={{ minWidth: searchBox.minWidth }}
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon fontSize="small" />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <CloseIcon fontSize="small" />
+                    </InputAdornment>
+                  )
+                }
+              }}
+            />
+          )) : null} 
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -58,29 +64,26 @@ export default function TableControls() {
           </Typography>
           
           {/* 필터 */}
-          <Select value={0} size="small" sx={{ minWidth: 140 }}>
-            <MenuItem value={0}>IDP TYPE</MenuItem>
-            <MenuItem value={10}>ur</MenuItem>
-            <MenuItem value={20}>br</MenuItem>
-            <MenuItem value={30}>lb</MenuItem>
-            <MenuItem value={40}>da</MenuItem>
-            <MenuItem value={50}>jv</MenuItem>
-          </Select>
-
-          <Select value={0}  size="small" sx={{mr: 1, minWidth: 140} }>
-            <MenuItem value={0}>STATUS</MenuItem>
-            <MenuItem value={10}>success</MenuItem>
-            <MenuItem value={20}>pending</MenuItem>
-            <MenuItem value={20}>error</MenuItem>
-          </Select>
-
-          {/* 정렬 */}
-          {/* <Box sx={{ display: 'flex', borderLeft: `1px solid ${theme.palette.grey[200]}`, alignItems: 'center'}}>
-            <IconButton><SortIcon sx={{ml: 3, mr: 2, color: 'text.disabled'}}></SortIcon></IconButton>
-            <Typography variant='body2' color='text.disabled' sx={{ letterSpacing: '0.05em'}}>
-            <b>Sort by</b>
-            </Typography>
-          </Box> */}
+          {filterBoxes.map((filterBox) => (
+            <FormControl
+              key={filterBox.name}
+              size={filterBox.size}
+              sx = {{ minWidth: filterBox.minWidth }}
+            >
+              <InputLabel id={filterBox.labelId}>{filterBox.label}</InputLabel>
+              <Select
+                name={filterBox.name}
+                value={filterValue[filterBox.name]}
+                labelId={filterBox.labelId}
+                label={filterBox.label}
+                onChange={handleChange}
+              >
+               {filterBox.menuBoxes.map((menuBox) => (
+                  <MenuItem key={menuBox.value} value={menuBox.value}>{menuBox.value}</MenuItem>
+               ))}
+              </Select>
+            </FormControl>
+          ))}
         </Box>
       </Box>
     )
