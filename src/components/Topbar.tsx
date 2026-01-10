@@ -5,7 +5,6 @@ import {
 } from '@mui/icons-material';
 
 interface Option{
-    sidebarWidth: number;
     mainMenu: string;
     subMenu: string;
 }
@@ -13,39 +12,31 @@ interface Option{
 export default function Topbar(props: Option) {
     return (
         <AppBar
-            position="fixed"
+            position="sticky" //Topbar 고정
             elevation={0}
             sx={{
                 p: 0.3,
                 bgcolor: '#fff',
                 borderBottom: '1px solid #eaeef3',
                 color: 'text.primary',
-
-                /* Sidebar영역 제외한 영역만 차지 */
-                left: `${props.sidebarWidth}px`,
-                width: `calc(100% - ${props.sidebarWidth}px)`,
-                
-                //zIndex: (theme) => theme.zIndex.drawer + 1,
+                flexShrink: 0
             }}
         >
-  
-            <Toolbar sx={{ justifyContent: 'space-between', px: 4, flexWrap: 'nowrap', overflow: 'hidden'}}>
-            {/* 왼쪽과 오른쪽에 content 배치 */}
-
+            <Toolbar sx={{ height: 65, px: 4, display: 'flex', alignItems: 'cneter'}}>
                 <Box 
                     sx={{ 
                         display: 'flex', 
                         alignItems: 'center', 
                         gap: 0.5,  
                         whiteSpace: 'nowrap',
+                        minWidth: 250, //좌측 contents 최소너비 확보
                         overflow: 'hidden',
-                        textOverflow: 'ellipsis'
                     }}>
-                    <Typography variant="body1" color="text.secondary">
+                    <Typography variant="body1" color="text.secondary" noWrap>
                         {props.subMenu}&nbsp; / &nbsp;
                     </Typography>
 
-                    <Typography variant="body1" color="text.primary">
+                    <Typography variant="body1" color="text.primary" noWrap>
                         <b>{props.mainMenu}</b>
                     </Typography>
                 </Box>
@@ -55,7 +46,7 @@ export default function Topbar(props: Option) {
                         display: 'flex', 
                         alignItems: 'center', 
                         gap: 1, 
-                        whiteSpace: 'nowrap',
+                        ml: 'auto', //우측 정렬 
                         flexShrink: 0
                     }}>
                      <IconButton>
